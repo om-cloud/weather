@@ -34,36 +34,36 @@ app.get('',(req,res)=>{
     })
 })
 
-app.get('/weather',(req,res)=>{
-    res.render('index',{
-        title:'Weather',
-        name:'Ohad Matalon'
-    })
-})
-
-// app.get('/weather', (req,res)=>{
-//     if(!req.query.address){
-//         return res.send({
-//             error:'Please Provide an address'
-//         })
-//     }
-//     geocode(req.query.address, (error, data)=>{
-//         if(error){
-//             return res.send({error:error})
-//         }
-//         weather(data.latitude, data.longitude,(error, forecastData)=>{
-//       if(error){
-//           return res.send({error})
-//       }
-    
-//       res.send({
-//           forecast:forecastData,
-//           location:data.location,
-//           address:req.query.address
-//       })
-//         })
+// app.get('/weather',(req,res)=>{
+//     res.render('index',{
+//         title:'Weather',
+//         name:'Ohad Matalon'
 //     })
 // })
+
+app.get('/weather', (req,res)=>{
+    if(!req.query.address){
+        return res.send({
+            error:'Please Provide an address'
+        })
+    }
+    geocode(req.query.address, (error, data)=>{
+        if(error){
+            return res.send({error:error})
+        }
+        weather(data.latitude, data.longitude,(error, forecastData)=>{
+      if(error){
+          return res.send({error})
+      }
+    
+      res.send({
+          forecast:forecastData,
+          location:data.location,
+          address:req.query.address
+      })
+        })
+    })
+})
 
 
 //my version of chapter 55 excersie that sends the info straight to the app
