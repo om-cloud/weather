@@ -6,6 +6,7 @@ const request = require('postman-request')
 const geocode = require('./utils/geocode');
 const weather = require('./utils/weather');
 const chalk = require('chalk');
+const port = process.env.PORT || 3000
 
 console.log(__dirname)
 console.log(__filename)
@@ -185,6 +186,6 @@ app.get('*', (req,res)=>{
 //     }
 // ])
 // })
-app.listen(3000, ()=>{
-    console.log('server is up and running at port 3000');
+app.listen(port, ()=>{
+    console.log('server is up and running at port ' + port);
 })
