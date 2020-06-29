@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <div class="container" >
+    <head>
+ <title>Weather</title>
+   <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body>
+        <div class="main-conten">
+          {{>header}}   
+              <h6 class="forecast" style="color:red !important">{{error}}</h6>
+</div>
+     <div>
+              <h6 class="forecast">{{location}}</h6>
+              <h6 class="forecast">{{forcast}}</h6>
+         
+          </div>
+         {{>footer}}
+    </body>
+    </div>
+</html>
