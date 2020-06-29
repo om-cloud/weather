@@ -14,8 +14,8 @@ const getWeather = (location)=>{
             message2.textContent='';
            return console.log(data.error);  
         }else{
-            console.log(data.location);
-            console.log(data.forecast);
+            //console.log(data.location);
+            //console.log(data.forecast);
             message1.textContent=data.location;
             message2.textContent=data.forecast;
         }
@@ -38,8 +38,7 @@ weatherForm.addEventListener('submit', (event)=>{
     message2.textContent='';
     getWeather(location);
 
-
-    console.log(location);
+    //console.log(location);
 })
 
 
