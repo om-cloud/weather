@@ -5,6 +5,7 @@ const app = express();
 const request = require('postman-request')
 const geocode = require('./utils/geocode');
 const weather = require('./utils/weather');
+const weatherIcon = require('./utils/weatherIcon');
 const chalk = require('chalk');
 const port = process.env.PORT || 3000
 
@@ -42,6 +43,7 @@ app.get('',(req,res)=>{
 // })
 
 app.get('/weather', (req,res)=>{
+    let forecastD='';
     if(!req.query.address){
         return res.send({
             error:'Please Provide an address'
@@ -51,18 +53,30 @@ app.get('/weather', (req,res)=>{
         if(error){
             return res.send({error:error})
         }
+
+
         weather(data.latitude, data.longitude,(error, forecastData)=>{
       if(error){
           return res.send({error})
       }
+        //forecastD = forecastData;
+        weatherIcon(data.latitude, data.longitude,(error, forecastIcon)=>{
+            if(error){
+            return
+         }
+         
+         res.send({
     
-      res.send({
-          forecast:forecastData,
-          location:data.location,
-          address:req.query.address
-      })
+           location:data.location,
+           address:req.query.address,
+           icon:forecastIcon,
+           forecast:forecastData
+       })
+   
+       })
         })
-    })
+    
+})
 })
 
 
